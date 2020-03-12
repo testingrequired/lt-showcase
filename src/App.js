@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import { getPhotos } from "./photoService";
-import PhotoGrid from "./PhotoGrid";
+import { getPhotos } from "./services/photoService";
+import PhotoGrid from "./components/PhotoGrid";
 
 function App() {
   const [photos, setPhotos] = React.useState();
