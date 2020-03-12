@@ -9,6 +9,7 @@ export default function PhotoGrid({ photos }) {
       {photos && photos.length
         ? photos.map(photo => (
             <Photo
+              key={photo.id}
               id={photo.id}
               title={photo.title}
               url={photo.url}
