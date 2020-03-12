@@ -4,7 +4,8 @@ import { getPhotos } from "./services/photoService";
 import PhotoGrid from "./components/PhotoGrid";
 
 function App() {
-  const [photos, setPhotos] = React.useState();
+  const [photos, setPhotos] = React.useState([]);
+  const [maxPhotos] = React.useState(100);
 
   React.useEffect(() => {
     (async () => {
@@ -17,7 +18,7 @@ function App() {
   return (
     <div>
       <h1>Gallery</h1>
-      <PhotoGrid photos={photos} />
+      <PhotoGrid photos={photos.slice(0, maxPhotos)} />
     </div>
   );
 }
