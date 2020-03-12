@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, wait } from "@testing-library/react";
 import App from "./App";
 
 jest.mock("./services/photoService");
@@ -12,8 +12,10 @@ beforeEach(async () => {
   photoService.getPhotos = jest.fn().mockResolvedValue([]);
 });
 
-it("should display header text", () => {
+it("should display header text", async () => {
   const { container } = render(<App />);
+
+  await wait(() => container.querySelector("h1"));
 
   const header = container.querySelector("h1");
 
@@ -22,7 +24,9 @@ it("should display header text", () => {
 });
 
 it("should call photo service to get photos", async () => {
-  render(<App />);
+  const { getByTestId } = render(<App />);
+
+  await wait(() => getByTestId("photoGrid"));
 
   expect(photoService.getPhotos).toHaveBeenCalledWith();
 });

@@ -2,11 +2,12 @@ import React from "react";
 import Photo from "./Photo";
 
 export default function PhotoGrid({ photos }) {
-  return (
+  return photos ? (
     <div
       style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+      data-testid="photoGrid"
     >
-      {photos && photos.length
+      {photos.length
         ? photos.map(photo => (
             <Photo
               key={photo.id}
@@ -18,5 +19,5 @@ export default function PhotoGrid({ photos }) {
           ))
         : null}
     </div>
-  );
+  ) : null;
 }
