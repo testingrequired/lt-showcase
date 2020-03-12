@@ -6,7 +6,7 @@ export default function PhotoGrid({ photos }) {
     <div
       style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
     >
-      {photos
+      {photos && photos.length
         ? photos.map(photo => (
             <Photo
               id={photo.id}
