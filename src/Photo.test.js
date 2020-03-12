@@ -4,19 +4,17 @@ import { render } from "@testing-library/react";
 import Photo from "./Photo";
 
 it("should render image", () => {
-  const photo = {
-    id: 1,
-    title: "expectedTitle",
-    thumbnailUrl: "expectedThumbnailUrl"
-  };
+  const expectedThumbnailUrl = "expectedThumbnailUrl";
+  const expectedTitle = "expectedTitle";
 
-  const { getByAltText } = render(
-    <Photo
-      id={photo.id}
-      title={photo.title}
-      thumbnailUrl={photo.thumbnailUrl}
-    />
+  const { container } = render(
+    <Photo id={1} title={expectedTitle} thumbnailUrl={expectedThumbnailUrl} />
   );
 
-  expect(getByAltText(photo.title)).toHaveAttribute("src", photo.thumbnailUrl);
+  const photo = container.querySelector("img");
+
+  expect(photo).not.toBeNull();
+
+  expect(photo.getAttribute("src")).toEqual(expectedThumbnailUrl);
+  expect(photo.getAttribute("alt")).toEqual(expectedTitle);
 });

@@ -3,7 +3,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import PhotoGrid from "./PhotoGrid";
 
-it("should render images", () => {
+describe("with photos passed", () => {
   const photo = {
     id: 1,
     title: "expectedTitle",
@@ -16,11 +16,21 @@ it("should render images", () => {
     thumbnailUrl: "expectedThumbnailUrl2"
   };
 
-  const { getByAltText } = render(<PhotoGrid photos={[photo, photo2]} />);
+  it("should render all images", () => {
+    const { container } = render(<PhotoGrid photos={[photo, photo2]} />);
 
-  expect(getByAltText(photo.title)).toHaveAttribute("src", photo.thumbnailUrl);
-  expect(getByAltText(photo2.title)).toHaveAttribute(
-    "src",
-    photo2.thumbnailUrl
-  );
+    const photos = container.querySelectorAll("img");
+
+    expect(photos).toHaveLength(2);
+  });
+});
+
+describe("with no photos passed", () => {
+  it("should not render", () => {
+    const { container } = render(<PhotoGrid photos={[]} />);
+
+    const photos = container.querySelectorAll("img");
+
+    expect(photos).toHaveLength(0);
+  });
 });
