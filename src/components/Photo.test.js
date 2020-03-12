@@ -17,6 +17,7 @@ it("should render image", () => {
 
   expect(photo.getAttribute("src")).toEqual(expectedThumbnailUrl);
   expect(photo.getAttribute("alt")).toEqual(expectedTitle);
+  expect(photo.getAttribute("title")).toEqual(expectedTitle);
 });
 
 it("should render link", () => {

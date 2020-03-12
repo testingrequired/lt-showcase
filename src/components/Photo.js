@@ -7,6 +7,7 @@ export default function Photo({ id, title, url, thumbnailUrl }) {
         <img
           src={thumbnailUrl}
           alt={title}
+          title={title}
           style={{ width: "150px", height: "150px" }}
         />
       </a>
