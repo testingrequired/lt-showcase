@@ -4,6 +4,14 @@ import App from "./App";
 
 jest.mock("./services/photoService");
 
+let photoService;
+
+beforeEach(async () => {
+  photoService = await import("./services/photoService");
+
+  photoService.getPhotos = jest.fn().mockResolvedValue([]);
+});
+
 it("should display header text", () => {
   const { container } = render(<App />);
 
@@ -14,10 +22,6 @@ it("should display header text", () => {
 });
 
 it("should call photo service to get photos", async () => {
-  const photoService = await import("./services/photoService");
-
-  photoService.getPhotos = jest.fn();
-
   render(<App />);
 
   expect(photoService.getPhotos).toHaveBeenCalledWith();
