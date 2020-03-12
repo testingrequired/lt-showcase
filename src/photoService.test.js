@@ -41,5 +41,18 @@ describe("photoService", () => {
 
       expect(response).toEqual(expectedResponse);
     });
+
+    describe("with query params", () => {
+      const expectedAlbumId = 123;
+      const params = { albumId: expectedAlbumId };
+
+      it("should call API with query params", async () => {
+        await getAllPhotos(params);
+
+        expect(fetch).toBeCalledWith(
+          `https://jsonplaceholder.typicode.com/photos?albumId=${expectedAlbumId}`
+        );
+      });
+    });
   });
 });
