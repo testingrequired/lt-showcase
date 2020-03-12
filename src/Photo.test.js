@@ -18,3 +18,17 @@ it("should render image", () => {
   expect(photo.getAttribute("src")).toEqual(expectedThumbnailUrl);
   expect(photo.getAttribute("alt")).toEqual(expectedTitle);
 });
+
+it("should render link", () => {
+  const expectedUrl = "http://localhost/expectedUrl";
+
+  const { container } = render(<Photo url={expectedUrl} />);
+
+  const link = container.querySelector("a");
+
+  expect(link).not.toBeNull();
+
+  expect(link.href).toEqual(expectedUrl);
+  expect(link.getAttribute("target")).toEqual("_blank");
+  expect(link.getAttribute("rel")).toEqual("noreferrer noopener");
+});
