@@ -1,11 +1,11 @@
-import { getAllPhotos } from "./photoService";
+import { getPhotos } from "./photoService";
 
 describe("photoService", () => {
   beforeEach(() => {
     fetch.resetMocks();
   });
 
-  describe("getAllPhotos", () => {
+  describe("getPhotos", () => {
     const expectedPhoto1 = {
       albumId: 1,
       id: 1,
@@ -29,7 +29,7 @@ describe("photoService", () => {
     });
 
     it("should call API", async () => {
-      await getAllPhotos();
+      await getPhotos();
 
       expect(fetch).toBeCalledWith(
         "https://jsonplaceholder.typicode.com/photos"
@@ -37,7 +37,7 @@ describe("photoService", () => {
     });
 
     it("should return all photos", async () => {
-      const response = await getAllPhotos();
+      const response = await getPhotos();
 
       expect(response).toEqual(expectedResponse);
     });
@@ -47,7 +47,7 @@ describe("photoService", () => {
       const params = { albumId: expectedAlbumId };
 
       it("should call API with query params", async () => {
-        await getAllPhotos(params);
+        await getPhotos(params);
 
         expect(fetch).toBeCalledWith(
           `https://jsonplaceholder.typicode.com/photos?albumId=${expectedAlbumId}`
